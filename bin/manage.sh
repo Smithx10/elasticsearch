@@ -55,12 +55,12 @@ configureMaster() {
 # update discovery.zen.ping.unicast.hosts
 replace() {
     REPLACEMENT=$(printf 's/^discovery\.zen\.ping\.unicast\.hosts.*$/discovery.zen.ping.unicast.hosts: ["%s"]/' ${MASTER})
-    sed -i "${REPLACEMENT}" /etc/elasticsearch/elasticsearch.yml
+    sed -i "${REPLACEMENT}" /usr/share/elasticsearch/config/elasticsearch.yml
 }
 
 health() {
     local privateIp=$(ip addr show eth0 | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}')
-    /usr/bin/curl --fail -s -o /dev/null http://${privateIp}:9200
+    /usr/bin/curl -u elastic:changeme --fail -s -o /dev/null http://${privateIp}:9200
 }
 
 # do whatever the arg is

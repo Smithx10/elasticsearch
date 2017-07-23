@@ -89,11 +89,11 @@ network.host: _eth0:ipv4_
 # the ContainerPilot `preStart` directive, which will rewrite this
 # configuration value with the appropriate hostname.
 
-discovery.zen.ping.multicast.enabled: false
 discovery.zen.ping.unicast.hosts: ["${ES_BOOTSTRAP_HOST}"]
 
 # ---------------------------------- Various -----------------------------------
 #
+bootstrap.system_call_filter: false
 # Disable starting multiple nodes on a single system:
 #
 # node.max_local_storage_nodes: 1
